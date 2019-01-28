@@ -1,0 +1,6 @@
+---
+pivnet-api-token: ((pivnet-token))
+pivnet-file-glob: "*vsphere*ova"
+pivnet-product-slug: ops-manager
+product-version: ((versions.products.opsman))
+
