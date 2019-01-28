@@ -1,0 +1,10 @@
+# Pivnet 
+pivnet_token: ((pivnet-token))
+
+# Products Versions
+
+versions:
+  products:
+    healthwatch: ((versions.products.healthwatch))
+    opsman: ((versions.products.opsman))
+    pas: ((products.versions.pas))
