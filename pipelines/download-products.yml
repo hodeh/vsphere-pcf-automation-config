@@ -38,6 +38,24 @@ resources:
     endpoint: ((s3.endpoint))
     regexp: healthwatch-stemcell/bosh-stemcell-(.*)-vsphere.*\.tgz
 
+- name: srt-product
+  type: s3
+  source:
+    access_key_id: ((s3.access_key_id))
+    secret_access_key: ((s3.secret_access_key))
+    bucket: ((s3.buckets.pivnet_products))
+    endpoint: ((s3.endpoint))
+    regexp: p-srt-(.*).pivotal
+
+- name: srt-stemcell
+  type: s3
+  source:
+    access_key_id: ((s3.access_key_id))
+    secret_access_key: ((s3.secret_access_key))
+    bucket: ((s3.buckets.pivnet_products))
+    endpoint: ((s3.endpoint))
+    regexp: srt-stemcell/bosh-stemcell-(.*)-vsphere.*\.tgz
+
 - name: opsman-product
   type: s3
   source:
@@ -133,6 +151,47 @@ jobs:
       params:
         file: healthwatch-stemcell/*.tgz
 
+- name: fetch-srt
+  plan:
+  - aggregate:
+    - get: daily
+      trigger: true
+    - get: platform-automation-image
+      params:
+        unpack: true
+    - get: platform-automation-tasks
+      params:
+        unpack: true
+    - get: config
+  - task: credhub-interpolate
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/credhub-interpolate.yml
+    params:
+      CREDHUB_CLIENT: ((credhub-client))
+      CREDHUB_SECRET: ((credhub-secret))
+      CREDHUB_SERVER: ((credhub-server))
+      CREDHUB_CA_CERT: ((credhub_ca_cert))
+      PREFIX: '/((foundation-name))/'
+      INTERPOLATION_PATH: "download-product-configs"
+    input_mapping:
+      files: config
+    output_mapping:
+      interpolated-files: config
+  - task: download-srt-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/srt.yml
+    output_mapping: {downloaded-stemcell: srt-stemcell}
+
+  - aggregate:
+    - put: srt-product
+      params:
+        file: downloaded-product/*.pivotal
+    - put: srt-stemcell
+      params:
+        file: srt-stemcell/*.tgz
+
 - name: fetch-opsman
   plan:
   - aggregate:
@@ -224,3 +283,4 @@ jobs:
     - put: platform-automation-image
       params:
         file: platform-automation-pivnet/*image*.tgz
+
