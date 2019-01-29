@@ -1,5 +1,6 @@
 foundation-name: 
-
+pivnet_token:
+opsman_image_s3_versioned_regexp: pcf-vsphere-(.*).ova
 configuration:
   private_key: |
     -----YOURKEY-----
