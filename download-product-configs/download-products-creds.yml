@@ -1,0 +1,27 @@
+foundation-name: 
+
+configuration:
+  private_key: |
+    -----YOURKEY-----
+
+    -----YOURKEY-----
+  uri: https://github.com/hodeh/vsphere-pcf-automation-config
+
+# minio s3 configs
+
+s3: 
+  buckets:
+    pivnet_products: 
+  endpoint:  
+  access_key_id: 
+  secret_access_key: 
+
+
+# Credhub Credentials
+credhub-client: 
+credhub-secret: 
+credhub-server: 
+credhub_ca_cert: |
+  -----YOURKEY-----
+
+  -----YOURKEY-----
