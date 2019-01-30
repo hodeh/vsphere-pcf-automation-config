@@ -164,8 +164,8 @@ jobs:
     file: pcf-automation-tasks/tasks/configure-authentication.yml
     attempts: 10
     input_mapping:
-      env: configuration
-      config: configuration
+      env: interpolated-configs
+      config: interpolated-configs
     params:
       ENV_FILE: ((foundation-name))/config/env.yml
       AUTH_CONFIG_FILE: ((foundation-name))/config/auth.yml
