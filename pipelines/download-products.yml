@@ -130,7 +130,7 @@ jobs:
       CREDHUB_SECRET: ((credhub-secret))
       CREDHUB_SERVER: ((credhub-server))
       CREDHUB_CA_CERT: ((credhub_ca_cert))
-      PREFIX: '/((foundation-name))/'
+      PREFIX: '/((foundation-name))'
       INTERPOLATION_PATH: "download-product-configs"
     input_mapping:
       files: config
@@ -171,7 +171,7 @@ jobs:
       CREDHUB_SECRET: ((credhub-secret))
       CREDHUB_SERVER: ((credhub-server))
       CREDHUB_CA_CERT: ((credhub_ca_cert))
-      PREFIX: '/((foundation-name))/'
+      PREFIX: '/((foundation-name))'
       INTERPOLATION_PATH: "download-product-configs"
     input_mapping:
       files: config
@@ -212,7 +212,7 @@ jobs:
       CREDHUB_SECRET: ((credhub-secret))
       CREDHUB_SERVER: ((credhub-server))
       CREDHUB_CA_CERT: ((credhub_ca_cert))
-      PREFIX: '/((foundation-name))/'
+      PREFIX: '/((foundation-name))'
       INTERPOLATION_PATH: "download-product-configs"
     input_mapping:
       files: config
@@ -250,7 +250,7 @@ jobs:
       CREDHUB_SECRET: ((credhub-secret))
       CREDHUB_SERVER: ((credhub-server))
       CREDHUB_CA_CERT: ((credhub_ca_cert))
-      PREFIX: '/((foundation-name))/'
+      PREFIX: '/((foundation-name))'
       INTERPOLATION_PATH: "download-product-configs"
     input_mapping:
       files: config
