@@ -39,7 +39,7 @@ then
     while IFS='=' read -r key val; do
         [[ $key = '#'* ]] && continue
             if [ ! -z "$key" ] && [ ! -z "$val" ]; then
-                credhub set -n "/$1/$key" -t value -v "$val"
+                credhub set -n /$1/$key -t value -v $val
             fi            
            
     done < $2
