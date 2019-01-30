@@ -82,7 +82,7 @@ resources:
   type: git
   source:
     private_key: ((configuration.private_key))
-    uri: ((configuration.uri))
+    uri: ((variable.uri))
     branch: master
 
 # triggers used to have jobs do something in a timely manner
@@ -113,7 +113,6 @@ jobs:
         unpack: true
     - get: opsman-image
     - get: configuration
-    - get: variable
   - task: credhub-interpolate
     image: pcf-automation-image
     file: pcf-automation-tasks/tasks/credhub-interpolate.yml
@@ -127,17 +126,19 @@ jobs:
     input_mapping:
       files: configuration
     output_mapping:
-      interpolated-files: configuration    
+      interpolated-files: interpolated-configs    
   - task: create-vm
     image: pcf-automation-image
     file: pcf-automation-tasks/tasks/create-vm.yml
     input_mapping:
       image: opsman-image
       state: configuration
-      config: configuration
+      config: interpolated-configs
+
     params:
       STATE_FILE: ((foundation-name))/state/state.yml
       OPSMAN_CONFIG_FILE: ((foundation-name))/config/opsman.yml
+      
     ensure: &make-state-commit
       do:
         - task: make-commit
@@ -166,15 +167,14 @@ jobs:
       env: configuration
       config: configuration
     params:
-      ENV_FILE: ((foundation-name))/env/env.yml
+      ENV_FILE: ((foundation-name))/config/env.yml
       AUTH_CONFIG_FILE: ((foundation-name))/config/auth.yml
   - task: configure-director
     image: pcf-automation-image
     file: pcf-automation-tasks/tasks/configure-director.yml
     input_mapping:
-      config: configuration
-      env: configuration
-      vars: variable
+      config: interpolated-configs
+      env: interpolated-configs
     params:
       VARS_FILES: vars/((foundation-name))/vars/director-vars.yml
       ENV_FILE: ((foundation-name))/env/env.yml
