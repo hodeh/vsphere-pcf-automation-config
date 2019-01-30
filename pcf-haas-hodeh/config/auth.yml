@@ -1,4 +1,4 @@
 ---
-username: ((env-configuration.opsman.username))
-password: ((env-configuration.opsman.password))
-decryption-passphrase: ((env-configuration.opsman.decryption_phrase))
+username: ((env-configuration-opsman-username))
+password: ((env-configuration-opsman-password))
+decryption-passphrase: ((env-configuration-opsman-decryption_phrase))
