@@ -59,7 +59,7 @@ networks-configuration:
     subnets:
     - iaas_identifier: PAS-Infrastructure
       cidr: 10.193.237.0/24
-      reserved_ip_ranges: [10.193.237.1-10.193.237.230,10.193.237.249-10.193.237.255]
+      reserved_ip_ranges: 10.193.237.1-10.193.237.230,10.193.237.249-10.193.237.255
       dns: ((opsman-configuration-dns))
       gateway: ((opsman-configuration-gateway))
       availability_zone_names:
@@ -70,7 +70,7 @@ networks-configuration:
     subnets:
     - iaas_identifier: PAS-Deployment
       cidr: 10.193.237.0/24
-      reserved_ip_ranges: [10.193.237.1-10.193.237.37,10.193.237.231-10.193.237.248,10.193.237.251-10.193.237.255]
+      reserved_ip_ranges: 10.193.237.1-10.193.237.35,10.193.237.231-10.193.237.248,10.193.237.251-10.193.237.255
       dns: ((opsman-configuration-dns))
       gateway: ((opsman-configuration-gateway))
       availability_zone_names:
