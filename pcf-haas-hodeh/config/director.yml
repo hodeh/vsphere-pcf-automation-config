@@ -1,1 +1,106 @@
-#
+az-configuration: 
+  - name: az1
+    clusters:
+    - cluster: Cluster
+      resource_pool: az1
+  - name: az2
+    clusters:
+    - cluster: Cluster
+      resource_pool: az2
+  - name: az3
+    clusters:
+    - cluster: Cluster
+      resource_pool: az3
+director-configuration:
+  allow_legacy_agents: true
+  blobstore_type: local
+  bosh_recreate_on_next_deploy: false
+  bosh_recreate_persistent_disks_on_next_deploy: false
+  database_type: internal
+  director_worker_count: 5
+  encryption:
+    keys: []
+    providers: []
+  excluded_recursors: []
+  hm_emailer_options:
+    enabled: false
+  hm_pager_duty_options:
+    enabled: false
+  identification_tags: {}
+  keep_unreachable_vms: false
+  local_blobstore_options:
+    tls_enabled: true
+  ntp_servers_string: "((opsman-configuration-ntp))"
+  post_deploy_enabled: false
+  resurrector_enabled: true
+  retry_bosh_deploys: false
+iaas-configuration:
+  bosh_disk_path: pcf_disk
+  bosh_template_folder: pcf_bosh_vms
+  bosh_vm_folder: pcf_bosh_vm_folder
+  datacenter: ((opsman-configuration-vcenter-datacenter))
+  ephemeral_datastores_string: ((opsman-configuration-vcenter-datastore))
+  name: pcf-vsphere
+  nsx_networking_enabled: false
+  persistent_datastores_string: ((opsman-configuration-vcenter-datastore))
+  ssl_verification_enabled: false
+  vcenter_host: ((opsman-configuration-vcenter-host))
+  vcenter_username: ((opsman-configuration-vcenter-username))
+  vcenter_password: ((opsman-configuration-vcenter-password))
+network-assignment:
+  singleton_availability_zone:
+    name: az-1
+  network:
+    name: PAS-Deployment
+networks-configuration:
+  icmp_checks_enabled: true
+  networks:
+  - name: PAS-Infrastructure
+    subnets:
+    - iaas_identifier: PAS-Infrastructure
+      cidr: 10.193.237.0/24
+      reserved_ip_ranges: [10.193.237.1-10.193.237.230,10.193.237.249-10.193.237.255]
+      dns: ((opsman-configuration-dns))
+      gateway: ((opsman-configuration-gateway))
+      availability_zone_names:
+      - az1
+      - az2
+      - az3
+  - name: PAS-Deployment
+    subnets:
+    - iaas_identifier: PAS-Deployment
+      cidr: 10.193.237.0/24
+      reserved_ip_ranges: [10.193.237.1-10.193.237.37,10.193.237.231-10.193.237.248,10.193.237.251-10.193.237.255]
+      dns: ((opsman-configuration-dns))
+      gateway: ((opsman-configuration-gateway))
+      availability_zone_names:
+      - az1
+      - az2
+      - az3
+  - name: SERVICES
+    subnets:
+    - iaas_identifier: SERVICES
+      cidr: 10.195.23.0/24
+      reserved_ip_ranges: [10.195.23.1-10.195.23.10,10.195.23.201-10.195.23.255]
+      dns: ((opsman-configuration-dns))
+      gateway: 10.195.23.1
+      availability_zone_names:
+      - az1
+      - az2
+      - az3
+resource-configuration:
+  compilation:
+    instances: automatic
+    instance_type:
+      id: automatic
+  director:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+security-configuration:
+  generate_vm_passwords: true
+syslog-configuration:
+  enabled: false
+vmextensions-configuration: []
