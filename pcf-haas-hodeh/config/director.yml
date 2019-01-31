@@ -77,9 +77,9 @@ networks-configuration:
       - az1
       - az2
       - az3
-  - name: SERVICES
+  - name: PAS-Services
     subnets:
-    - iaas_identifier: SERVICES
+    - iaas_identifier: PAS-Services
       cidr: 10.195.23.0/24
       reserved_ip_ranges: [10.195.23.1-10.195.23.10,10.195.23.201-10.195.23.255]
       dns: ((opsman-configuration-dns))
