@@ -44,7 +44,7 @@ iaas-configuration:
   nsx_networking_enabled: false
   persistent_datastores_string: ((opsman-configuration-vcenter-datastore))
   ssl_verification_enabled: false
-  vcenter_host: ((opsman-configuration-vcenter-url))
+  vcenter_host: vcsa-01.haas-173.pez.pivotal.io
   vcenter_username: ((opsman-configuration-vcenter-username))
   vcenter_password: ((opsman-configuration-vcenter-password))
 network-assignment:
