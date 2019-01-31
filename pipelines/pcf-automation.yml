@@ -176,7 +176,6 @@ jobs:
       config: interpolated-configs
       env: interpolated-configs
     params:
-      VARS_FILES: vars/((foundation-name))/vars/director-vars.yml
       ENV_FILE: ((foundation-name))/config/env.yml
       DIRECTOR_CONFIG_FILE: ((foundation-name))/config/director.yml
   - task: apply-director-changes
