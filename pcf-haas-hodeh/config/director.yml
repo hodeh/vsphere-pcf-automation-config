@@ -49,7 +49,7 @@ iaas-configuration:
   vcenter_password: ((opsman-configuration-vcenter-password))
 network-assignment:
   singleton_availability_zone:
-    name: az-1
+    name: az1
   network:
     name: PAS-Deployment
 networks-configuration:
