@@ -506,19 +506,31 @@ jobs:
       params:
         unpack: true
       passed:
-      - configure-healthwatch
       - configure-srt
       trigger: true
     - get: pcf-automation-tasks
       params:
         unpack: true
     - get: configuration
-    - get: variable
+  - task: credhub-interpolate
+    image: pcf-automation-image
+    file: pcf-automation-tasks/tasks/credhub-interpolate.yml
+    params:
+      CREDHUB_CLIENT: ((credhub-client))
+      CREDHUB_SECRET: ((credhub-secret))
+      CREDHUB_SERVER: ((credhub-server))
+      CREDHUB_CA_CERT: ((credhub_ca_cert))
+      PREFIX: '/((foundation-name))'
+      INTERPOLATION_PATH: "((foundation-name))/config"
+    input_mapping:
+      files: configuration
+    output_mapping:
+      interpolated-files: interpolated-configs    
   - task: apply-product-changes
     image: pcf-automation-image
     file: pcf-automation-tasks/tasks/apply-changes.yml
     input_mapping:
-      env: configuration
+      env: interpolated-configs
     params:
       ENV_FILE: ((foundation-name))/config/env.yml
 
