@@ -27,7 +27,7 @@ product-properties:
     - key: #20 Chars at least
         secret: ((srt-credhub-encryption-password))
       name: key
-      primary: false
+      primary: true
       provider: internal
   .properties.networking_poe_ssl_certs:
     value:
