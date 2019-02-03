@@ -7,7 +7,7 @@ product-properties:
   .cloud_controller.system_domain:
     value: ((srt-cloud-controller-sys-domain))
   .control.static_ips:
-    value: ((srt-cloud-controller-static-ips))
+    value: ((srt-cloud-controller-static-ssh-ips))
   .diego_brain.starting_container_count_maximum:
     value: 200
   .doppler.message_drain_buffer_size:
