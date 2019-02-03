@@ -1,0 +1,75 @@
+product-name: cf
+product-properties:
+  .cloud_controller.allow_app_ssh_access:
+    value: true
+  .cloud_controller.apps_domain:
+    value: ((srt-cloud-controller-apps-domain))
+  .cloud_controller.system_domain:
+    value: ((srt-cloud-controller-sys-domain))
+  .control.static_ips:
+    value: ((srt-cloud-controller-static-ips))
+  .diego_brain.starting_container_count_maximum:
+    value: 200
+  .doppler.message_drain_buffer_size:
+    value: 10000
+  .ha_proxy.skip_cert_verify:
+    value: false
+  .ha_proxy.static_ips:
+    value: ((srt-haproxy-static-ips))
+  .mysql_monitor.recipient_email:
+    value: ((mysql-monitor-email))
+  .properties.container_networking_interface_plugin:
+    value: silk
+  .properties.credhub_database:
+    value: internal_mysql
+  .properties.credhub_key_encryption_passwords:
+    value:
+    - key: #20 Chars at least
+        secret: ((srt-credhub-encryption-password))
+      name: key
+      primary: false
+      provider: internal
+  .properties.networking_poe_ssl_certs:
+    value:
+    - certificate:
+        cert_pem: ((srt-networking-cert))
+        private_key_pem: ((srt-networking-pk))
+      name: haproxy-router-certificate
+  .properties.router_client_cert_validation:
+    value: request
+  .properties.router_enable_proxy:
+    value: false
+  .properties.routing_disable_http:
+    value: false
+  .properties.routing_tls_termination:
+    value: load_balancer
+  .properties.security_acknowledgement:
+    value: X
+  .properties.system_blobstore_ccdroplet_max_staged_droplets_stored:
+    value: 2
+  .properties.system_blobstore_ccpackage_max_valid_packages_stored:
+    value: 2
+  .properties.system_database:
+    value: internal_pxc
+  .properties.tcp_routing:
+    value: enable
+  .properties.tcp_routing.enable.reservable_ports:
+    value: 10000-10005
+  .properties.uaa:
+    value: internal
+  .properties.uaa_database:
+    value: internal_mysql
+  .properties.uaa_session_cookie_max_age:
+    value: 28800
+  .properties.uaa_session_idle_timeout:
+    value: 1800
+  .router.disable_insecure_cookies:
+    value: false
+  .router.static_ips:
+    value: ((srt-router-static-ips))
+  .tcp_router.static_ips:
+    value: ((srt-tcp-router-static-ips))
+  .uaa.service_provider_key_credentials:
+    value:
+      cert_pem: ((srt-uaa-cert))
+      private_key_pem: ((srt-uaa-pk))

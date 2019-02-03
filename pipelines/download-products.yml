@@ -45,7 +45,7 @@ resources:
     secret_access_key: ((s3.secret_access_key))
     bucket: ((s3.buckets.pivnet_products))
     endpoint: ((s3.endpoint))
-    regexp: p-srt-(.*).pivotal
+    regexp: srt-(.*).pivotal
 
 - name: srt-stemcell
   type: s3
