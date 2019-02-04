@@ -1,6 +1,10 @@
 foundation-name: 
 pivnet_token:
 opsman_image_s3_versioned_regexp: pcf-vsphere-(.*).ova
+opsman-version: 
+pas-version:
+srt-version:
+healthwatch-version:  
 configuration:
   private_key: |
     -----YOURKEY-----
